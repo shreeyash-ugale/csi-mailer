@@ -15,7 +15,7 @@ import (
 	"github.com/csivitu/csi-mailer/pkg/models"
 )
 
-func handler(ctx context.Context, request events.LambdaFunctionURLRequest) (*events.LambdaFunctionURLStreamingResponse, error) {
+func handler(ctx context.Context, request events.APiGatewayProxyRequest) (*events.LambdaFunctionURLStreamingResponse, error) {
     var emailReq models.RequestBody
 	err := json.Unmarshal([]byte(request.Body), &emailReq)
 	if err != nil {
