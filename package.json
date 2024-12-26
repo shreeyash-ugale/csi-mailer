@@ -1,0 +1,23 @@
+{
+  "name": "csi-mailer",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "clean": "turbo run clean",
+    "prebuild": "bun run clean",
+    "predeploy": "bun run build",
+    "deploy": "turbo run deploy",
+    "down": "turbo run down",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "turbo": "^2.3.3"
+  },
+  "packageManager": "bun@1.0.0"
+}
