@@ -2,6 +2,7 @@
   "name": "@csi-mailer/terraform",
   "private": true,
     "scripts": {
+      "build": "echo 'No Build step'",
       "init": "terraform init",
       "plan": "terraform plan -o tf.plan",
       "deploy": "terraform apply tf.plan -auto-approve",
