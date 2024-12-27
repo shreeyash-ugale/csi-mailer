@@ -2,7 +2,9 @@
   "name": "@csi-mailer/terraform",
   "private": true,
     "scripts": {
-      "deploy": "terraform apply -auto-approve",
+      "init": "terraform init",
+      "plan": "terraform plan -o tf.plan",
+      "deploy": "terraform apply tf.plan -auto-approve",
       "down": "terraform destroy -auto-approve",
       "clean": "rm -rf .terraform"
     }

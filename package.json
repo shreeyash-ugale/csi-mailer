@@ -11,9 +11,11 @@
     "clean": "turbo run clean",
     "prebuild": "bun run clean",
     "predeploy": "bun run build",
-    "deploy": "turbo run deploy",
-    "down": "turbo run down",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "deploy": "turbo run infra:up",
+    "down": "turbo run infra:down",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "init": "turbo run init",
+    "plan": "turbo run infra:plan"
   },
   "devDependencies": {
     "prettier": "^3.1.0",
