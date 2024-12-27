@@ -2,7 +2,7 @@
   "name": "@csi-mailer/backend", 
   "private": true, 
     "scripts": {
-      "build": "go build -o build/main",
+      "build": "go build -o build/bootstrap",
       "clean": "rm -rf build"
     }
   }
