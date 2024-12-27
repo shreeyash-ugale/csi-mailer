@@ -1,5 +1,9 @@
 provider "aws" {
-  region = "eu-north-1"
+  shared_config_files      = ["C:\\Users\\Shreeyash Ugale\\.aws\\config"]
+  shared_credentials_files = ["C:\\Users\\Shreeyash Ugale\\.aws\\credentials"]
+  profile                  = "default"
+  region                   = "ap-south-1"
+
 }
 
 resource "aws_iam_role" "lambda_role_csi" {
@@ -69,7 +73,7 @@ resource "aws_lambda_function" "lambda_function" {
   publish       = true
   environment {
     variables = {
-      REGION = "eu-north-1"
+      REGION = "ap-south-1"
     }
   }
 
@@ -84,4 +88,55 @@ resource "aws_lambda_function_url" "lambda_function_url" {
     allow_methods = ["POST"]
   }
   invoke_mode = "RESPONSE_STREAM"  # Enable the response stream option
+}
+
+resource "aws_api_gateway_rest_api" "api" {
+  name        = "csi-mailer-api"
+  description = "API Gateway for CSI Mailer Lambda function"
+}
+
+resource "aws_api_gateway_resource" "resource" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
+  path_part   = "send-email"
+}
+
+resource "aws_api_gateway_method" "method" {
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.resource.id
+  http_method   = "POST"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "integration" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.resource.id
+  http_method = aws_api_gateway_method.method.http_method
+  type        = "AWS_PROXY"
+  integration_http_method = "POST"
+  uri         = aws_lambda_function.lambda_function.invoke_arn
+}
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_function.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
+}
+
+resource "aws_api_gateway_deployment" "deployment" {
+  depends_on = [aws_api_gateway_integration.integration]
+  rest_api_id = aws_api_gateway_rest_api.api.id
+}
+
+resource "aws_api_gateway_stage" "stage" {
+  deployment_id = aws_api_gateway_deployment.deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  stage_name    = "dev"
+}
+
+output "api_gateway_url" {
+  value = "${aws_api_gateway_deployment.deployment.invoke_url}dev/send-email"
+  description = "The URL of the API Gateway endpoint"
 }
