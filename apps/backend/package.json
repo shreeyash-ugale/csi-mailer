@@ -1,0 +1,8 @@
+{
+  "name": "@csi-mailer/backend", 
+  "private": true, 
+    "scripts": {
+      "build": "go build -o build/main",
+      "clean": "rm -rf build"
+    }
+  }

@@ -1,0 +1,9 @@
+{
+  "name": "@csi-mailer/terraform",
+  "private": true,
+    "scripts": {
+      "deploy": "terraform apply -auto-approve",
+      "down": "terraform destroy -auto-approve",
+      "clean": "rm -rf .terraform"
+    }
+  }
