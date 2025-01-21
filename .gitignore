@@ -20,6 +20,8 @@ go.work.sum
 
 # env file
 .env
+*.env.local
+*.env.production
 
 # Temporary files and directories
 tmp/
@@ -32,6 +34,18 @@ function.zip
 terraform.tfstate
 terraform.tfstate.backup
 
+# Node
 node_modules
 .turbo
 build
+
+# Next.js
+.next
+out
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
