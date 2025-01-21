@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ../.. && bun run build --filter=@csi-mailer/web",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs",
+  "installCommand": "bun install",
+  "devCommand": "cd apps/web && bun run dev",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@csi-mailer-api-url"
+  }
+}
