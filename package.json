@@ -7,6 +7,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "lint": "turbo run lint",
     "clean": "turbo run clean",
     "prebuild": "bun run clean",
     "predeploy": "bun run build",
