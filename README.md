@@ -24,13 +24,13 @@ CSI Mailer is an open-source bulk email sending service that lets you send perso
 
 **Key features:**
 
-- 📬 **Bulk sending** — Send to any number of recipients in one submission
-- ⚡ **Real-time logs** — Watch email delivery happen live with per-recipient status updates
-- 🔐 **Credential-safe** — AWS keys are used only for the request and never stored
-- 🎨 **Clean UI** — Minimal, production-ready interface with shadcn/ui
-- 🌍 **Multi-region** — Select any AWS SES region
-- 📋 **Tag input** — Paste or type multiple email addresses with validation
-- 🚀 **Serverless** — Zero-cost at rest; pay only per email sent
+- **Bulk sending** — Send to any number of recipients in one submission
+- **Real-time logs** — Watch email delivery happen live with per-recipient status updates
+- **Credential-safe** — AWS keys are used only for the request and never stored
+- **Clean UI** — Minimal, production-ready interface with shadcn/ui
+- **Multi-region** — Select any AWS SES region
+- **Tag input** — Paste or type multiple email addresses with validation
+- **Serverless** — Zero-cost at rest; pay only per email sent
 
 ## Demo
 
